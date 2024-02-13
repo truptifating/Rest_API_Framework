@@ -10,11 +10,9 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import com.qa.base.TestBase;
 import com.qa.client.RestClient;
 import com.qa.util.TestUtil;
-
 import junit.framework.Assert;
 public class GetAPITest extends TestBase 
 {
@@ -29,17 +27,14 @@ public class GetAPITest extends TestBase
 	String apiurl;
 	String url;
 	RestClient restClient;
-	CloseableHttpResponse closeableHttpResponse;
-	
-	
+	CloseableHttpResponse closeableHttpResponse;		
   @BeforeMethod
   public void setup() throws IOException 
   {
 	testBase= new TestBase();  
 	serviceurl=prop.getProperty("URL");
 	apiurl=prop.getProperty("serviceURL");
-	url=serviceurl+apiurl;	
-	
+	url=serviceurl+apiurl;		
   }
   
   @Test(priority=1)
@@ -47,8 +42,7 @@ public class GetAPITest extends TestBase
   {
 	  restClient= new RestClient();
 	  closeableHttpResponse=restClient.get(url);  
-	  
-	  
+	
 	  		// a. Getting Status Code		
 			int statusCode= closeableHttpResponse.getStatusLine().getStatusCode();
 			System.out.println("Status Code is-->"+statusCode);
@@ -56,7 +50,7 @@ public class GetAPITest extends TestBase
 			// b. Validating the status code
 		    Assert.assertEquals(statusCode, RESPONSE_STATUS_CODE_200);
 			
-			// b.Getting Json String		
+			// c.Getting Json String		
 			String responseString= EntityUtils.toString(closeableHttpResponse.getEntity(), "UTF-8"); // The entire json code will convert to string and it will store in object i.e. responseS tring	 //UTF is the standard	
 			JSONObject responseJson=new JSONObject(responseString);             // Whole code will again convert to json and will save in responseJson object.
 			System.out.println("Respone Json from API-->"+responseJson); 
@@ -66,8 +60,6 @@ public class GetAPITest extends TestBase
 			String perPageValue=TestUtil.getvalueByJPath(responseJson, "/per_page"); 
 			System.out.println("value of per page is-->"+ perPageValue);
 			Assert.assertEquals(Integer.parseInt(perPageValue), 3);
-			
-			
 			
 			//total:
 			String totalValue = TestUtil.getvalueByJPath(responseJson, "/total");
@@ -84,22 +76,7 @@ public class GetAPITest extends TestBase
 			System.out.println(id);
 			System.out.println(avatar);
 			System.out.println(firstName);
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			// c. Getting all the Headers for headers testing
+			// d. Getting all the Headers for headers testing
 			Header[] headerArray=closeableHttpResponse.getAllHeaders();				
 			HashMap<String, String> allHeaders= new HashMap<String, String>();	 // Converting header array to hashmap	
 			for(Header header:headerArray)                                       // for iterating array
