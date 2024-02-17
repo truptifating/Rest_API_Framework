@@ -2,7 +2,6 @@ package com.qa.test;
 
 import java.io.IOException;
 import java.util.HashMap;
-
 import org.apache.http.Header;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;

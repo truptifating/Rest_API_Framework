@@ -29,8 +29,6 @@ public class RestClient
 		CloseableHttpResponse closeableHttpResponse= httpClient.execute(httpGet); // For executing the URL
 		return closeableHttpResponse;								
 	}	
-	
-	
 	// 2. Get Method With Headers
 	
 		public CloseableHttpResponse get(String url, HashMap<String, String> headerMap) throws ClientProtocolException, IOException 
@@ -43,12 +41,6 @@ public class RestClient
 				httpGet.addHeader(entry.getKey(), entry.getValue());
 				
 			}
-			
-			
-			
-			
-			
-			
 			CloseableHttpResponse closeableHttpResponse= httpClient.execute(httpGet); // For executing the URL
 			return closeableHttpResponse;								
 		}
